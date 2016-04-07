@@ -3,7 +3,7 @@
 <head>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Google Maps JavaScript API v3 Example: Directions Complex</title>
+    <title> AIzaSyBiZf3Z1kEniJeLeFToC4bjRpxnwEJOKLU </title>
 
 
 
@@ -18,8 +18,8 @@
             font-family: Helvetica, Arial;
         }
     </style>
-
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBiZf3Z1kEniJeLeFToC4bjRpxnwEJOKLU" type="text/javascript"></script>
+    <!--script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script-->
     <script type="text/javascript" src="/js/poly.js"></script>
     <script type="text/javascript">
 
@@ -60,45 +60,46 @@
 
 
         function initialize() {
-            infowindow = new google.maps.InfoWindow({
-                size: new google.maps.Size(150, 50)
-            });
 
-            // Instantiate a directions service.
-            directionsService = new google.maps.DirectionsService();
+             infowindow = new google.maps.InfoWindow({
+                 size: new google.maps.Size(150, 50)
+             });
 
-            // Create a map and center it on Manhattan.
-            var myOptions = {
-                zoom: 13,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            };
+             // Instantiate a directions service.
+             directionsService = new google.maps.DirectionsService();
 
-
-            map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-
-            //map.setCenter(results[0].geometry.location);
-
-            // Create a renderer for directions and bind it to the map.
-            var rendererOptions = {
-                map: map
-            };
+             // Create a map and center it on Manhattan.
+             var myOptions = {
+                 zoom: 13,
+                 mapTypeId: google.maps.MapTypeId.ROADMAP
+             };
 
 
-            directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+             map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-            // Instantiate an info window to hold step text.
-            stepDisplay = new google.maps.InfoWindow();
+             //map.setCenter(results[0].geometry.location);
 
-            polyline = new google.maps.Polyline({
-                path: [],
-                strokeColor: '#FF0000',
-                strokeWeight: 3
-            });
-            poly2 = new google.maps.Polyline({
-                path: [],
-                strokeColor: '#FF0000',
-                strokeWeight: 3
-            });
+             // Create a renderer for directions and bind it to the map.
+             var rendererOptions = {
+                 map: map
+             };
+
+
+             directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
+
+             // Instantiate an info window to hold step text.
+             stepDisplay = new google.maps.InfoWindow();
+
+             polyline = new google.maps.Polyline({
+                 path: [],
+                 strokeColor: '#FF0000',
+                 strokeWeight: 3
+             });
+             poly2 = new google.maps.Polyline({
+                 path: [],
+                 strokeColor: '#FF0000',
+                 strokeWeight: 3
+             });
         }
 
 
