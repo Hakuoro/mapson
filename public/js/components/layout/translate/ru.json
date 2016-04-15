@@ -1,0 +1,8 @@
+{ "layout":
+  {
+    "title": "Вход",
+    "login": "Email",
+    "pass": "Пароль",
+    "button_caption": "Войти"
+  }
+}

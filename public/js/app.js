@@ -4,68 +4,79 @@ define([
     'underscore',
     'backbone',
     'router',
-    'window',
     'polyglot',
-    'libs/js.cookie'
-], function ($, _, Backbone, Router, window, Polyglot, Cookies) {
+    'window'
+], function ($, _, Backbone, Router, Polyglot, window) {
 
-    return {
+    var app =  {
 
         polyglot:{},
-        lang:'ru',
         defaultLang:'ru',
         allowedLang : {ru:'ru', en:'en'},
-        loadedCommonTranslate:{},
+        translates:[],
 
         initialize: function () {
 
-            var self = this;
-
             this.lang = this.getLang();
 
-            this.polyglot  = new Polyglot({locale: this.lang});
+            this.poly  = new Polyglot({locale: this.lang});
 
-            window.eventBus = _.clone(Backbone.Events);
-
-            Router.initialize(self);
-
-            /*$.when($.getJSON('/translate/common/' + this.lang + '.json'))
-            .then(function(data) {
-
-                self.loadedCommonTranslate[self.lang] = data;
-                self.polyglot.extend(data);
-
-            });*/
+            Router.initialize(this);
         },
 
-        changeLang: function(lang) {
+
+        loadTranslation: function(section, lang){
+
+            if (!this.allowedLang[lang])
+                return false;
+
             var self = this;
-            this.setLang(lang);
 
-            if (self.loadedCommonTranslate && self.loadedCommonTranslate[lang]){
+            if (this.translates[section] && this.translates[section][lang] ){
 
-                self.polyglot.locale(lang);
-                self.polyglot.extend(self.loadedCommonTranslate[lang]);
-                self.lang = lang;
-                window.eventBus.trigger('app:changeLang');
+                if (this.lang!=lang) {
+
+                    this.poly.locale(lang);
+                    this.poly.extend(this.translates[section][lang]);
+                    self.setLang(lang);
+
+                    this.trigger(section + ':changeLang');
+                }
 
             } else {
 
-                $.when($.getJSON('/assets/translate/common/' + lang + '.json'))
+                $.when($.getJSON('/js/components/'+section+'/translate/' + lang + '.json'))
                     .then(function(data) {
-                        self.polyglot.locale(lang);
-                        self.polyglot.extend(data);
-                        self.loadedCommonTranslate[lang] = data;
-                        self.lang = lang;
-                        window.eventBus.trigger('app:changeLang');
+
+                        if (!self.translates[section]){
+                            self.translates[section] = [];
+                        }
+
+                        self.poly.locale(lang);
+                        self.poly.extend(data);
+                        self.translates[section][lang] = data;
+                        self.setLang(lang);
+
+                        self.trigger(section + ':changeLang');
                     });
 
             }
+
+
+            return this;
+        },
+
+        checkLang: function(lang){
+
+            if (this.allowedLang[lang])
+                return lang;
+
+
+            return this.defaultLang;
         },
 
         getLang: function() {
             var lang = window.localStorage.getItem('lang');
-
 
             if (lang == 'null' || lang == null ){
                 this.setLang(this.defaultLang);
@@ -75,17 +86,17 @@ define([
             return lang;
         },
 
-        setLang: function(value) {
-            window.localStorage.setItem('lang', value);
-        },
-
-        checkLocale: function(lang){
+        setLang: function(lang) {
             lang = lang || this.defaultLang;
 
-            if (this.allowedLang[lang]  && this.lang != lang ){
-                this.changeLang(lang);
+            if (this.allowedLang[lang] ){
+                window.localStorage.setItem('lang', lang);
+                this.lang = lang;
             }
         }
-
     };
+
+    _.extend(app, Backbone.Events);
+
+    return app;
 });

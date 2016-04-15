@@ -3,18 +3,13 @@ define([
     'jquery',
     'underscore',
     'backbone',
-    'socketClient',
-    'components/container/ContainerView',
-    'components/menu/top/MenuView',
-    'components/footer/FooterView',
-    'window',
-    'libs/js.cookie'
-], function ($, _, Backbone, SocketClient, ContainerView,  MenuView, FooterView, window, Cookies) {
+    'components/layout/LayoutView'
+], function ($, _, Backbone, LayoutView) {
 
     var AppRouter = Backbone.Router.extend({
         routes: {
             // Define some URL routes
-            'login-form(/)(:lang)' : 'showLogin',
+          /*  'login-form(/)(:lang)' : 'showLogin',
             'dash(/)(:lang)'  : 'showDash',
             'logout(/)(:lang)'  : 'logout',
             'reg(/)(:lang)'  : 'reg',
@@ -22,7 +17,7 @@ define([
             'courses(/)(:lang)'  : 'courses',
             'course/add(/)(:lang)'  : 'courseAdd',
             'course/show/:course(/)(:lang)'  : 'courseShow',
-            'course/edit/:course(/)(:lang)'  : 'courseEdit',
+            'course/edit/:course(/)(:lang)'  : 'courseEdit',*/
             // Default
             '(/)(:lang)': 'home'
         }
@@ -34,10 +29,12 @@ define([
 
             var app_router = new AppRouter;
 
+            var layout = new LayoutView(App);
 
             // default route
             app_router.on('route:home', function (lang) {
 
+                layout.loadTranslation(lang);
 
             });
 
