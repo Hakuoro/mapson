@@ -1,0 +1,11 @@
+{
+  "top_menu":{
+    "home": "Home",
+    "reg": "Registration",
+    "login": "Login",
+    "dash": "Dashboard",
+    "courses": "My courses",
+    "exit": "Logout"
+  },
+  "time": "Time"
+}
