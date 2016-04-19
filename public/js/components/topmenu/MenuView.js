@@ -23,6 +23,8 @@ define([
             BaseView.prototype.initialize.apply(this, arguments);
 
             this.model = new MenuModel({app:App});
+
+            console.log(this.model);
         },
 
         changeLang: function (){

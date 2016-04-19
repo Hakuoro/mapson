@@ -1,8 +1,10 @@
-{ "topmenu":
-  {
-    "title": "Вход",
-    "login": "Email",
-    "pass": "Пароль",
-    "button_caption": "Войти"
+{
+  "top_menu":{
+    "home": "Домой",
+    "reg": "Регистрация",
+    "login": "Войти",
+    "dash": "Профиль",
+    "courses": "Мои курсы",
+    "exit": "Выйти"
   }
 }

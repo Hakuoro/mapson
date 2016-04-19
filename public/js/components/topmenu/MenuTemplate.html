@@ -1,4 +1,7 @@
-<%- app.poly.t('topmenu.title')%>
+<% _.each(links, function(link){ %>
+<a href="<%- link.url %>"><%- app.poly.t(link.title) %></a>
+<% }); %>
+
 <select class="lang-selector">
     <option <% if (app.lang == 'ru')  {%> selected <% } %> value="ru">ru</option>
     <option <% if (app.lang == 'en')  {%> selected <% } %>value="en">en</option>

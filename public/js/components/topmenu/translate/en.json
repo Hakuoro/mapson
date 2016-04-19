@@ -1,8 +1,10 @@
-{ "topmenu":
-  {
-    "title": "Login",
-    "login": "Email",
-    "pass": "Password",
-    "button_caption": "Login"
+{
+  "top_menu":{
+    "home": "Home",
+    "reg": "Registration",
+    "login": "Login",
+    "dash": "Dashboard",
+    "courses": "My courses",
+    "exit": "Logout"
   }
 }
