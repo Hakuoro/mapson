@@ -21,13 +21,13 @@ define([
 
         initialize: function(App) {
             BaseView.prototype.initialize.apply(this, arguments);
+
             this.model = new MenuModel({app:App});
         },
 
         changeLang: function (){
-
             var lang = this.$('.lang-selector').val();
-            this.loadTranslation(lang);
+            this.app.trigger('App:changeLang', lang);
         }
     });
 });

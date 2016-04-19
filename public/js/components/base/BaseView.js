@@ -19,6 +19,12 @@ define([
         },
         render: function () {
             this.$el.html(this.template(this.model.attributes));
+        },
+        innerRender: function(el, lang){
+            this.$el = el;
+            this.delegateEvents();
+            this.loadTranslation(lang);
+
         }
     });
 });

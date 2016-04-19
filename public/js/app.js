@@ -34,14 +34,11 @@ define([
 
             if (this.translates[section] && this.translates[section][lang] ){
 
-                if (this.lang!=lang) {
-
                     this.poly.locale(lang);
                     this.poly.extend(this.translates[section][lang]);
                     self.setLang(lang);
 
                     this.trigger(section + ':changeLang');
-                }
 
             } else {
 

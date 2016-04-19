@@ -23,26 +23,20 @@ define([
 
         initialize: function(App) {
             BaseView.prototype.initialize.apply(this, arguments);
+
+            this.listenTo(App, 'App:changeLang', function(lang){
+                this.loadTranslation(lang);
+            });
+
             this.model = new LayoutModel({app:App});
 
             this.topMenuView = new MenuView(App);
-
-
-
-
-         /*   this.listenTo(App, this.topMenuView.section + ':changeLang', function(){
-                this.topMenuView.render()
-            });*/
         },
 
         render: function () {
             BaseView.prototype.render.apply(this, arguments);
 
-            this.topMenuView.$el = this.$('.top-menu');
-            this.topMenuView.delegateEvents();
-            this.topMenuView.loadTranslation(this.app.lang);
-
-            //this.topMenuView.render();
+            this.topMenuView.innerRender(this.$('.top-menu'), this.app.lang);
         }
     });
 });
