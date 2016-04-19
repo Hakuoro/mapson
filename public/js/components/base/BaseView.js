@@ -24,7 +24,6 @@ define([
             this.$el = el;
             this.delegateEvents();
             this.loadTranslation(lang);
-
         }
     });
 });
